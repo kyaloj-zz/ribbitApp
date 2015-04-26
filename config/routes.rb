@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
 
    resources :users
+   resources :ribbits
 
    root to: 'users#new'
   
