@@ -1,0 +1,47 @@
+class Api::RibbitsController < ApplicationController
+
+	def index
+    @ribbits = Ribbit.all 
+    @ribbit = Ribbit.new
+
+    render json: @ribbits, status: 200
+  end
+
+  def create
+       @ribbit = Ribbit.new(ribbit_params)
+       @ribbit.user_id = current_user.id
+ 
+       if @ribbit.save
+          redirect_to current_user 
+       else
+          flash[:error] = "Problem!"
+           redirect_to current_user
+       end
+   end
+
+   def new
+    @ribbit = Ribbit.new
+  end
+
+  def show
+    @ribbit = Ribbit.find(params[:id])
+    @ribbit = Ribbit.new
+
+    render json: @ribbit, status: 200
+  end
+
+
+  def edit
+    
+  end
+
+  def destroy
+    
+  end
+
+  private
+
+  def ribbit_params
+           params.require(:ribbit).permit(:context, :userid)
+    end
+end

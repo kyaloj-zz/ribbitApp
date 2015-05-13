@@ -10,5 +10,10 @@ Rails.application.routes.draw do
    resources :ribbits
 
    root to: 'users#new'
+
+   namespace :api do
+   	resources :users 
+   	resources :ribbits
+   end
   
 end
