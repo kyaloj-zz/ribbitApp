@@ -1,7 +1,10 @@
 class Api::UsersController < ApplicationController
 
 	def index
-		
+		@users = User.all 
+    
+
+    render json: @users, status: 200
 	end
 
 
@@ -28,6 +31,8 @@ class Api::UsersController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 		@ribbit = Ribbit.new
+
+		render json: @user, status: 200
 	end
 
 
